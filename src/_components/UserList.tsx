@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux'
@@ -7,31 +7,28 @@ import { UserInfo } from '../_constants/users.interface'
 import User from './User'
 import { AlertData } from '../_constants/alert.interface'
 import { alertSuccess } from '../_actions/alert.actions'
+import { clearUsers } from '../_actions/users.actions'
 
 type Props = {
     searchString: string,
     userList: UserData,
     alertState: AlertData,
     callLoadUsers: (username: string) => {},
-    showEndAlert: (message: string) => {}
+    clearUsers: () => {},
+    showAlert: (message: string) => {}
 }
-const UserList = (props: Props) => {
-    const [prevSearch, setPrevSearch] = useState("")
-    const [showInitialAlert, setShowInitialAlert] = useState(false)
+const UserList = ({ callLoadUsers, searchString, showAlert, clearUsers, ...props }: Props) => {
 
     useEffect(() => {
-        if(showInitialAlert)
-            return
-        props.showEndAlert('Please search artist...')
-        setShowInitialAlert(true)
-    }, [props, showInitialAlert, setShowInitialAlert])
+        console.log(searchString)
 
-    useEffect(() => {
-        if(!props.searchString || prevSearch === props.searchString)
-            return
-        props.callLoadUsers(props.searchString)
-        setPrevSearch(props.searchString)
-    }, [props, prevSearch, setPrevSearch])
+        if(searchString) {
+            callLoadUsers(searchString)
+        } else {
+            clearUsers()
+            showAlert('Please search artist...')
+        }
+    }, [callLoadUsers, searchString, showAlert, clearUsers])
 
     return (
         <div className="p-2">
@@ -63,7 +60,8 @@ const mapStateToProps = (state: {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => ({
     callLoadUsers: (username = "") => dispatch(loadUsers(username)),
-    showEndAlert: (message: string) => dispatch(alertSuccess(message)),
+    clearUsers: () => dispatch(clearUsers()),
+    showAlert: (message: string) => dispatch(alertSuccess(message)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList)

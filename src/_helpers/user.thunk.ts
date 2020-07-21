@@ -13,11 +13,11 @@ export const loadUsers = (username: string) => async (dispatch: MyThunkDispatch)
         let response = await fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${username}&api_key=8dc865ee2144b2d604e03829ecd3df3a&format=json`)
         const result = await response.json()
 
-        if(result.results.artistmatches.artist.length) {
+        if(result.results && result.results.artistmatches.artist.length) {
             dispatch(userLoadedSuccessfully(result.results.artistmatches.artist))
             dispatch(alertClear())
         } else {
-            dispatch(userLoadedSuccessfully(result.results.artistmatches.artist))
+            dispatch(userLoadedSuccessfully([]))
             dispatch(alertFailure("Sorry, there's no artist with that name!"))
         }
     } catch(e) {
