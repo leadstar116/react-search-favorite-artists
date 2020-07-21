@@ -20,14 +20,16 @@ const Header = (props: Props) => {
                 {props.withSearchBar &&
                 <InputGroup className="mr-sm-2 search-input" >
                     <InputGroup.Prepend>
-                        <InputGroup.Text className={props.searchString && "border border-danger"}>
+                        <InputGroup.Text className={!props.searchString
+                            ? "border border-danger"
+                            : ""}>
                             First and last name
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
                         type="text"
                         placeholder="Search"
-                        className={props.searchString
+                        className={!props.searchString
                             ? "mr-sm-2 border border-danger"
                             : "mr-sm-2"
                         }
