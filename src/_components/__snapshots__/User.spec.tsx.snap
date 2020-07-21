@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Component should render with given props 1`] = `
+<div
+  className="m-1 rounded border align-items-center text-center p-1 user row"
+  onClick={[Function]}
+>
+  <div
+    className="col-sm-2 col-12"
+  >
+    <img
+      alt=""
+      src="https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png"
+    />
+  </div>
+  <div
+    className="col-sm-2 col-12"
+  >
+    <span>
+      Pink Floyd
+    </span>
+  </div>
+  <div
+    className="col-sm-2 col-12"
+  >
+    <span>
+      https://www.last.fm/music/Pink+Floyd
+    </span>
+  </div>
+</div>
+`;
