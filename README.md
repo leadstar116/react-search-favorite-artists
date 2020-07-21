@@ -1,3 +1,21 @@
+# React based search favorite artists from last.fm
+
+## Project Description
++ Used TypeScript
++ Obtain an API key through last fm (link to obtain it is provided below)
++ Build a search input that enables a user to search for their favorite artist
++ After searching for an artist a list of relevant artists would populate the page
++ A user would be able to select an artist from the search page that will show biographical information (feel free to include discography)
+
+## Additional Information 
+You can obtain your API key from last.fm here:
+https://www.last.fm/api/account/create
+
+The last.fm's api docs are located here:
+https://www.last.fm/api/intro
+
+
+## Run Project
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
